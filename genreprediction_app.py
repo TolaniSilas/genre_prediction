@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler
 
 # Function to download the model file.
 def download_model():
-    model_url = ""
+    model_url = "https://github.com/TolaniSilas/genre_prediction/blob/main/best_xgb_model.joblib"
     response = request.get(model_url)
 
     with open("best_xgb_model.joblib", 'wb') as file_ojbect:
