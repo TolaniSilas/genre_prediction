@@ -1,6 +1,26 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import requests
+import joblib
+import xgboost as xgb
+from sklearn.preprocessing import StandardScaler
+
+# Function to download the model file.
+def download_model():
+    model_url = ""
+    response = request.get(model_url)
+
+    with open("best_xgb_model.joblib", 'wb') as file_ojbect:
+        file_object.write(response.content)
+
+# Download the model file by calling the function.
+download_model()
+
+# Load the model using joblib
+loaded_model = joblib.load("best_xgb_model.joblib")
+
+
 
 
 
@@ -97,7 +117,7 @@ elif app_mode == "Prediction":
     
     
     if st.button("Predict the song genre", key="my_button"):
-        st.write("The song genre is Rock")
+        st.success("The song genre is Rock")
            
     
 # Display if app_mode is "Deep Dive"      
