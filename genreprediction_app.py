@@ -105,19 +105,27 @@ elif app_mode == "Prediction":
     st.markdown("To predict if a song is Hip Hop or Rock, fill in the following:")
     
     # Prompt the user input features so as to predict if it is a Hip Hop or Rock song.
-    st.number_input("Acousticness", min_value=0.0, max_value=1.0)
-    st.number_input("Danceability", min_value=0.0, max_value=1.0)
-    st.number_input("Energy", min_value=0.0, max_value=1.0)
-    st.number_input("Instrumentalness", min_value=0.0, max_value=1.0)
-    st.number_input("Liveness", min_value=0.0, max_value=1.0)
-    st.number_input("Speechiness", min_value=0.0, max_value=1.0)
-    st.number_input("Tempo", min_value=0.0, max_value=260.0)
-    st.number_input("Valence", min_value=0.0, max_value=1.0)
+    acousticness = st.number_input("Acousticness", min_value=0.0, max_value=1.0)
+    danceability = st.number_input("Danceability", min_value=0.0, max_value=1.0)
+    energy = st.number_input("Energy", min_value=0.0, max_value=1.0)
+    instrumentalness = st.number_input("Instrumentalness", min_value=0.0, max_value=1.0)
+    liveness = st.number_input("Liveness", min_value=0.0, max_value=1.0)
+    speechiness = st.number_input("Speechiness", min_value=0.0, max_value=1.0)
+    tempo = st.number_input("Tempo", min_value=0.0, max_value=260.0)
+    valence = st.number_input("Valence", min_value=0.0, max_value=1.0)
     
     
     
     if st.button("Predict the song genre", key="my_button"):
-        st.success("The song genre is Rock")
+        # Prepare the user input as an array.
+        user_input = [float(acousticness), float(danceability), float(energy), float(instrumentalness), \
+                      float(liveness), float(speechiness), float(tempo), float(valence)]
+        
+        # Perform prediction using the loaded model.
+        prediction = loaded_model.predict([user_input])
+
+        # Display the prediction.
+        st.success(f"The song genre is {prediction[0]}")
            
     
 # Display if app_mode is "Deep Dive"      
@@ -125,12 +133,12 @@ elif app_mode == "Deep Dive into Music Analysis":
     st.header("Deep Dive into Music Analysis")
     st.markdown("In this section, we'll explore the fascinating word of music analysis and its impact on understanding different genres.")
     
-    acoustic = """Acousticness: The acousticness of a music refers to the degree of acoustic elements in a song. It measures how much the 
+    acousticness = """Acousticness: The acousticness of a music refers to the degree of acoustic elements in a song. It measures how much the 
     sound of the music is derived from acoustic instruments or natural sounds, as opposed to electronic or synthesized sounds. The value of 
     acousticness can range from 0.0 to 1.0. A value of 0.0 indicates that the music has no acoustic elements and is completely electronic or 
     synthesized, while a value of 1.0 indicates that the music is entirely acoustic, with no electronic or synthesized elements. The values in
     between represent varying degrees of acousticness in the music."""
-    st.write(acoustic)
+    st.write(acousticness)
     
     danceability = """Danceability: Danceability is a measure of how suitable a song is for dancing. It can range from 0.0 to 1.0, with 0.0 meaning 
     the song is not at all danceable and 1.0 indicating that the song has a high potential for dancing. Values in between represent varying degrees of 
