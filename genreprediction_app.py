@@ -3,15 +3,15 @@ import pandas as pd
 import numpy as np
 import requests
 import joblib
-import xgboost as xgb
+# import xgboost as xgb
 from sklearn.preprocessing import StandardScaler
 
 # Function to download the model file.
 def download_model():
     model_url = "https://github.com/TolaniSilas/genre_prediction/blob/main/best_xgb_model.joblib"
-    response = request.get(model_url)
+    response = requests.get(model_url)
 
-    with open("best_xgb_model.joblib", 'wb') as file_ojbect:
+    with open("best_xgb_model.joblib", 'wb') as file_object:
         file_object.write(response.content)
 
 # Download the model file by calling the function.
