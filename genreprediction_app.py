@@ -6,19 +6,19 @@ import joblib
 # import xgboost as xgb
 from sklearn.preprocessing import StandardScaler
 
-# Function to download the model file.
-def download_model():
-    model_url = "https://github.com/TolaniSilas/genre_prediction/blob/main/best_xgb_model.joblib"
-    response = requests.get(model_url)
+# # Function to download the model file.
+# def download_model():
+#     model_url = "https://github.com/TolaniSilas/genre_prediction/blob/main/best_xgb_model.joblib"
+#     response = requests.get(model_url)
 
-    with open("best_xgb_model.joblib", 'wb') as file_object:
-        file_object.write(response.content)
+#     with open("best_xgb_model.joblib", 'wb') as file_object:
+#         file_object.write(response.content)
 
-# Download the model file by calling the function.
-download_model()
+# # Download the model file by calling the function.
+# download_model()
 
-# Load the model using joblib
-loaded_model = joblib.load("best_xgb_model.joblib")
+# # Load the model using joblib
+# loaded_model = joblib.load("best_xgb_model.joblib")
 
 
 
@@ -88,16 +88,6 @@ if app_mode == 'Home':
 
 
 
-
-
-
-
-
-
-    
-    
-    
-    
     
 # Display if app_mode is "Prediction".   
 elif app_mode == "Prediction":
@@ -121,11 +111,11 @@ elif app_mode == "Prediction":
         user_input = [float(acousticness), float(danceability), float(energy), float(instrumentalness), \
                       float(liveness), float(speechiness), float(tempo), float(valence)]
         
-        # Perform prediction using the loaded model.
-        prediction = loaded_model.predict([user_input])
+        # # Perform prediction using the loaded model.
+        # prediction = loaded_model.predict([user_input])
 
-        # Display the prediction.
-        st.success(f"The song genre is {prediction[0]}")
+        # # Display the prediction.
+        # st.success(f"The song genre is {prediction[0]}")
            
     
 # Display if app_mode is "Deep Dive"      
