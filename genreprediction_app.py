@@ -5,6 +5,7 @@ import requests
 import joblib
 # import xgboost as xgb
 from sklearn.preprocessing import StandardScaler
+from genre_model import predict_class_proba
 
 # # Function to download the model file.
 # def download_model():
@@ -76,14 +77,15 @@ if app_mode == 'Home':
     </div>
     
     <div style="background-color: purple; padding: 10px;">
+    
         
     </div>
     """
 
     # Display the HTML content using st.markdown
     st.markdown(html_code, unsafe_allow_html=True)
-
-
+    # st.markdown(f"""
+    #             """, unsafe_allow_html=True)
 
 
     
@@ -109,11 +111,11 @@ elif app_mode == "Prediction":
         user_input = [float(acousticness), float(danceability), float(energy), float(instrumentalness), \
                       float(liveness), float(speechiness), float(tempo), float(valence)]
         
-        # Perform prediction using the loaded model.
-        prediction = loaded_model.predict([user_input])
+        pred_proba, prediction = predict_class_proba(user_input)
+        
 
         # Display the prediction.
-        st.success(f"The song genre is {prediction[0]}")
+        st.success(f"The song genre is {prediction}")
    
     
 # Display if app_mode is "Deep Dive"      
@@ -127,46 +129,72 @@ elif app_mode == "Deep Dive into Music Analysis":
     synthesized, while a value of 1.0 indicates that the music is entirely acoustic, with no electronic or synthesized elements. The values in
     between represent varying degrees of acousticness in the music."""
     st.write(acousticness)
-    
+
     danceability = """Danceability: Danceability is a measure of how suitable a song is for dancing. It can range from 0.0 to 1.0, with 0.0 meaning 
     the song is not at all danceable and 1.0 indicating that the song has a high potential for dancing. Values in between represent varying degrees of 
     danceability. So, the closer the value is to 1.0, the more danceable the song is considered to be."""
     st.write(danceability)
+
     
     energy = """Energy: Energy is a measure of the intensity and activity level in a song. It can range from 0.0 to 1.0, with 0.0 representing a low-
     energy song that is calm and mellow, and 1.0 representing a high-energy song that is energetic and lively. The values in between indicate varying 
     degrees of energy in the music. So, the closer the value is to 1.0, the more energetic and lively the song is considered to be."""
     st.write(energy)
     
+    
     instrumentalness = """Instrumentalness: Instrumentalness is a measure of the presence of vocals in a song. It can range from 0.0 to 1.0. A value 
     of 0.0 indicates that the song is likely to have vocals, while a value of 1.0 suggests that the song is likely to be instrumental without any 
     vocals. The values in between represent varying degrees of the presence of vocals in the music. So, the closer the value is to 1.0, the more 
     likely it is that the song is instrumental."""
     st.write(instrumentalness)
+   
     
     liveness = """Liveness: Liveness is a measure of the presence of a live audience or performance in a song. It can range from 0.0 to 1.0. A value of 0.0 
     indicates that the song is likely a studio recording without any live elements, while a value of 1.0 suggests that the song is a live performance 
     with an audible audience. The values in between represent varying degrees of live elements in the music. So, the closer the value is to 1.0, 
     the more likely it is that the song contains a live performance or audience sounds."""
     st.write(liveness)
+
     
     speechiness = """Speechiness: Speechiness is a measure of the presence of spoken words in a song. It can range from 0.0 to 1.0. A value of 0.0 indicates that
     the song is mostly instrumental, while a value of 1.0 suggests that the song is primarily spoken word or a podcast. The values in between represent 
     varying degrees of the presence of spoken words in the music. So, the closer the value is to 1.0, the more likely it is that the song contains 
     spoken words."""
     st.write(speechiness)
+
     
     tempo = """Tempo: Tempo is a measure of the speed or pace of a song. It is typically measured in beats per minute (BPM). The range of tempos in 
     music can vary greatly, but generally, tempos can range from as low as 40 BPM to as high as 200+ BPM. Slower tempos are often associated with more
     relaxed or calm music, while faster tempos are often associated with energetic or upbeat music. So, depending on the song, the tempo can fall within
     a wide range of values."""
     st.write(tempo)
+
     
     valence = """Valence: Valence is a measure of the musical positivity or negativity of a song. It can range from 0.0 to 1.0. A valence value of 
     0.0 represents a song with a negative or sad emotional tone, while a valence value of 1.0 represents a song with a positive or happy emotional tone. 
     The values in between represent varying degrees of emotional positivity or negativity in the music. So, the closer the value is to 1.0, the more
     positive and uplifting the song is considered to be."""
     st.write(valence)
+ 
+    
+    # github, linkedIn and twitter link.
+    github_link = "https://twitter.com/"
+    twitter_link = "https://github.com/"
+    linkedIn_link = "https://www.linkedin.com/in/"
+    
+    # define the colors.
+    twitter_color = "#1DA1F2"
+    github_color = "#181717"
+    linkedIn_color = "#181717"
+    
+    # Display links with colored markdown.
+    st.markdown(f"<span style='color: {twitter_color}''>[Follow me on Twitter]({twitter_link})</span>", unsafe_allow_html=True)
+    st.markdown(f"<span style='color: {github_color}''>[Follow me on Twitter]({github_link})</span>", unsafe_allow_html=True)
+    st.markdown(f"<span style='color: {linkedIn_color}''>[Let's connect on LinkedIn]({linkedIn_link})</span>", unsafe_allow_html=True)
+    
+    
+    
+    
     
     
     

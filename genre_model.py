@@ -179,11 +179,11 @@ xgb_model.fit(scaled_train_features, train_labels)
 
 
 
-# Save the best model to a joblib file.
-joblib.dump(xgb_model, 'best_xgb_model.joblib')
+# # Save the best model to a joblib file.
+# joblib.dump(xgb_model, 'best_xgb_model.joblib')
 
-# Load the saved model in the joblib file.
-loaded_model = joblib.load('best_xgb_model.joblib')
+# # Load the saved model in the joblib file.
+# loaded_model = joblib.load('best_xgb_model.joblib')
 
 
 
@@ -207,29 +207,30 @@ loaded_model = joblib.load('best_xgb_model.joblib')
 
 
 
-# def predict_class_proba(user_input):
-#     "A function that predict the probabilities of each classes(positive(Rock) and negative(Hip Hop)) based on the collected input features."
+def predict_class_proba(user_input):
+    "A function that predict the probabilities of each classes(positive(Rock) and negative(Hip Hop)) based on the collected input features."
 
-#     # Extract the user input from the accept_user_input function.
-#     f1, f2, f3, f4, f5, f6, f7, f8 = user_input()
-
-
-#     user_input = np.array([f1, f2, f3, f4, f5, f6, f7, f8]).reshape(-1, 8)
-
-#     # Scale the user input using the same scaler used during training.
-#     scaled_input = scaler.transform(user_input)
-
-#     # Make Prediction probability.
-#     class_proba = loaded_model.predict_proba(scaled_input)
-
-#     # Make class predictions.
-#     label_class = loaded_model.predict(scaled_input)
-
-#     if label_class == 0:
-#         return class_proba[0], "Hip-Hop"
-
-#     elif label_class == 1:
-#         return class_proba[0], "Rock"
+    # # Extract the user input from the accept_user_input function.
+    # f1, f2, f3, f4, f5, f6, f7, f8 = user_input()
 
 
-# print(predict_class_proba(accept_user_input))
+    # user_input = np.array([f1, f2, f3, f4, f5, f6, f7, f8]).reshape(-1, 8)
+    user_input = np.array([user_input]).reshape(-1, 8)
+
+    # Scale the user input using the same scaler used during training.
+    scaled_input = scaler.transform(user_input)
+
+    # Make Prediction probability.
+    class_proba = xgb_model.predict_proba(scaled_input)
+
+    # Make class predictions.
+    label_class = xgb_model.predict(scaled_input)
+
+    if label_class == 0:
+        return class_proba[0], "Hip-Hop"
+
+    elif label_class == 1:
+        return class_proba[0], "Rock"
+
+
+
