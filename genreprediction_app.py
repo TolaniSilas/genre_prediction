@@ -17,8 +17,8 @@ from sklearn.preprocessing import StandardScaler
 # # Download the model file by calling the function.
 # download_model()
 
-# # Load the model using joblib
-# loaded_model = joblib.load("best_xgb_model.joblib")
+# Load the model using joblib
+loaded_model = joblib.load("best_xgb_model.joblib")
 
 
 
@@ -64,20 +64,18 @@ if app_mode == 'Home':
     st.write(datasets.head())
     # st.write("Developed by: Osunba Silas")
     
-    # HTML code with embedded Streamlit content and styling
+    # HTML code with styling
     html_code = f"""
-    <div style="padding: 10px; background-color: #18578A; margin-bottom: 10px;">
+    <div style="padding: 10px; background-color: purple; margin-bottom: 10px;">
         <h2 style="color: white;">About the App</h2>
         <p style="color: white;">A Genre Prediction App is an application that uses machine learning algorithms and music analysis techniques to predict
         the genre of a given song. It analyzes various features of a song, such as tempo, instrumentation and vocal characteristics, and then applies a
         trained model to classify the song into Hip Hop and Rock genres.</p>
-    
-        <h3 style="color: white;">Datasets:</h3>
         
-        <!-- Your "Developed by" text here -->
+        <p>Developed by Osunba Silas</p>
     </div>
     
-    <div style="background-color: blue; padding: 10px;">
+    <div style="background-color: purple; padding: 10px;">
         
     </div>
     """
@@ -111,12 +109,12 @@ elif app_mode == "Prediction":
         user_input = [float(acousticness), float(danceability), float(energy), float(instrumentalness), \
                       float(liveness), float(speechiness), float(tempo), float(valence)]
         
-        # # Perform prediction using the loaded model.
-        # prediction = loaded_model.predict([user_input])
+        # Perform prediction using the loaded model.
+        prediction = loaded_model.predict([user_input])
 
-        # # Display the prediction.
-        # st.success(f"The song genre is {prediction[0]}")
-           
+        # Display the prediction.
+        st.success(f"The song genre is {prediction[0]}")
+   
     
 # Display if app_mode is "Deep Dive"      
 elif app_mode == "Deep Dive into Music Analysis":
