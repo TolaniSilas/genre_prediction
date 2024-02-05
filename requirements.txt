@@ -4,4 +4,4 @@ numpy
 requests
 joblib
 xgboost
-skicit-learn
+scikit-learn
