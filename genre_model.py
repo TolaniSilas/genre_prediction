@@ -215,7 +215,8 @@ def predict_class_proba(user_input):
 
 
     # user_input = np.array([f1, f2, f3, f4, f5, f6, f7, f8]).reshape(-1, 8)
-    user_input = np.array([user_input]).reshape(-1, 8)
+    user_input = np.array([user_input])
+    user_input = user_input.reshape(1, 8)
 
     # Scale the user input using the same scaler used during training.
     scaled_input = scaler.transform(user_input)

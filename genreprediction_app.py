@@ -108,10 +108,10 @@ elif app_mode == "Prediction":
     
     if st.button("Predict the song genre", key="my_button"):
         # Prepare the user input as an array.
-        user_input = [float(acousticness), float(danceability), float(energy), float(instrumentalness), \
+        user_inputs = [float(acousticness), float(danceability), float(energy), float(instrumentalness), \
                       float(liveness), float(speechiness), float(tempo), float(valence)]
         
-        pred_proba, prediction = predict_class_proba(user_input)
+        pred_proba, prediction = predict_class_proba(user_inputs)
         
 
         # Display the prediction.
