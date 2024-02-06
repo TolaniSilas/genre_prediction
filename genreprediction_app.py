@@ -7,22 +7,6 @@ import joblib
 from sklearn.preprocessing import StandardScaler
 from genre_model import predict_class_proba
 
-# # Function to download the model file.
-# def download_model():
-#     model_url = "https://github.com/TolaniSilas/genre_prediction/blob/main/best_xgb_model.joblib"
-#     response = requests.get(model_url)
-
-#     with open("best_xgb_model.joblib", 'wb') as file_object:
-#         file_object.write(response.content)
-
-# # Download the model file by calling the function.
-# download_model()
-
-# Load the model using joblib
-loaded_model = joblib.load("best_xgb_model.joblib")
-
-
-
 
 
 # Set the theme configuration.
@@ -67,25 +51,28 @@ if app_mode == 'Home':
     
     # HTML code with styling
     html_code = f"""
-    <div style="padding: 10px; background-color: purple; margin-bottom: 10px;">
-        <h2 style="color: white;">About the App</h2>
-        <p style="color: white;">A Genre Prediction App is an application that uses machine learning algorithms and music analysis techniques to predict
+    <div style="padding: 10px; background-color: #382755; margin-bottom: 10px;">
+        <h3 style="color: white;">About the App</h3>
+        <p style="color: white;">The Genre Prediction App is an application that uses machine learning algorithm and music analysis techniques to predict
         the genre of a given song. It analyzes various features of a song, such as tempo, instrumentation and vocal characteristics, and then applies a
-        trained model to classify the song into Hip Hop and Rock genres.</p>
+        trained model to classify the song into Hip Hop and Rock genres. This is a binary classfication tasks, where the model is being asked to being trained
+        to predict two different classes. The algorithm used was the eXtreme Gradeint Boosting(XGBoost) algorithm.</p>
         
-        <p>Developed by Osunba Silas</p>
+        Developed by Osunba Silas
     </div>
     
-    <div style="background-color: purple; padding: 10px;">
+    <div style="background-color:white; padding: 100px; margin:0px;">
     
         
     </div>
     """
+    twitter_username = ""
+    twitter_img_src = ""
 
     # Display the HTML content using st.markdown
     st.markdown(html_code, unsafe_allow_html=True)
-    # st.markdown(f"""
-    #             """, unsafe_allow_html=True)
+    
+ 
 
 
     
@@ -113,9 +100,16 @@ elif app_mode == "Prediction":
         
         pred_proba, prediction = predict_class_proba(user_inputs)
         
-
+        # Display prediction results.
+        st.write(f"Hip-Hop Predicted Probability: {pred_proba[0]:.3f}")
+        st.write(f"Rock Predicted Probability: {pred_proba[1]:.3f}")
+        
+        # Display the probability bar chart.
+        st.bar_chart({"Hip-Hop": pred_proba[0], "Rock": pred_proba[1]}, use_container_width=True)
+        
         # Display the prediction.
         st.success(f"The song genre is {prediction}")
+        
    
     
 # Display if app_mode is "Deep Dive"      
@@ -178,8 +172,8 @@ elif app_mode == "Deep Dive into Music Analysis":
  
     
     # github, linkedIn and twitter link.
-    github_link = "https://twitter.com/"
-    twitter_link = "https://github.com/"
+    twitter_link = "https://twitter.com/thaguymaxx"
+    github_link = "https://github.com/TolaniSilas"
     linkedIn_link = "https://www.linkedin.com/in/"
     
     # define the colors.
@@ -188,8 +182,8 @@ elif app_mode == "Deep Dive into Music Analysis":
     linkedIn_color = "#181717"
     
     # Display links with colored markdown.
-    st.markdown(f"<span style='color: {twitter_color}''>[Follow me on Twitter]({twitter_link})</span>", unsafe_allow_html=True)
-    st.markdown(f"<span style='color: {github_color}''>[Follow me on Twitter]({github_link})</span>", unsafe_allow_html=True)
+    st.markdown(f"[Follow me on Twitter]({twitter_link}", unsafe_allow_html=True)
+    st.markdown(f"<span style='color: {github_color}''>[Follow me on Twitter]({github_link})</sty>", unsafe_allow_html=True)
     st.markdown(f"<span style='color: {linkedIn_color}''>[Let's connect on LinkedIn]({linkedIn_link})</span>", unsafe_allow_html=True)
     
     
