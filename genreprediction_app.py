@@ -1,3 +1,4 @@
+# Import the necessary libraries and modules.
 import streamlit as st
 import pandas as pd 
 import numpy as np
@@ -17,27 +18,11 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-
+# To select page.
 app_mode = st.sidebar.selectbox("Select Page", ["Home", "Deep Dive into Music Analysis",  "Prediction"])
 
-# # Display if app_mode is "Home".
-# if app_mode == 'Home':
-    
-#     st.title("Genre Prediction App")
-#     st.markdown("This is a web app that predicts a song as either Hiphop or Rock")
-#     st.image("genre.png")
 
-#     st.markdown("Datasets:")
-#     datasets = pd.read_csv("genre_dataset.csv")
-#     datasets = datasets.drop("Unnamed: 0", axis=1)
-#     st.write(datasets.head())
-#     st.write("Developed by: Osunba Silas")
-    
-    
-
-
-
-# Your Streamlit code
+# Display if app_mode is "Home".
 if app_mode == 'Home':
     st.title("Genre Prediction App")
     st.markdown("This is a web app that predicts a song as either Hiphop or Rock")
@@ -48,7 +33,7 @@ if app_mode == 'Home':
     datasets = datasets.drop("Unnamed: 0", axis=1)
     st.write(datasets.head())
     
-    # HTML code with styling
+    # HTML code with styling.
     html_code = f"""
     <div style="padding: 10px; background-color: #382755; margin-bottom: 0px;">
         <h3 style="color: white;">About the App</h3>
@@ -56,11 +41,8 @@ if app_mode == 'Home':
         to predict the genre of a given song. It analyzes various features of a song, such as tempo, instrumentation, and vocal characteristics. 
         It applies a trained model to classify the song into either Hip Hop or Rock genres. This involves a binary classification task, 
         where the model is trained to predict two different classes. The algorithm employed for this task is the eXtreme Gradient Boosting (XGBoost)
-        algorithm.</p>
-        
-        
+        algorithm.</p> 
     </div>
-    
     """
     
     # Display the HTML content using st.markdown
@@ -89,7 +71,6 @@ if app_mode == 'Home':
     
     
 
-    
 # Display if app_mode is "Prediction".   
 elif app_mode == "Prediction":
     st.header("Prediction")
@@ -124,8 +105,6 @@ elif app_mode == "Prediction":
         # Display the prediction.
         st.success(f"The song genre is {prediction}")
         
-   
-   
    
     
 # Display if app_mode is "Deep Dive"      
@@ -188,7 +167,7 @@ elif app_mode == "Deep Dive into Music Analysis":
     st.write(valence)
     
     
-    st.write("""""")
+    st.write("""""") 
     st.write("""The integration of machine learning algorithms into music analysis has transformed the field, enabling analysts to uncover new dimensions
         of understanding for the complex and intricate nuances of music.""")
  

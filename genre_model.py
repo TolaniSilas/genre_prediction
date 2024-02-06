@@ -1,3 +1,4 @@
+# Import the necesaary libraries and modules.
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -19,7 +20,7 @@ features = echo_tracks.drop(["Unnamed: 0", "genre", "track_id"], axis=1)
 labels = echo_tracks.genre
 
 #Initialize LabelEncoder.
-label_encoder = LabelEncoder()
+label_encoder = LabelEncoder()   
 
 # Fit and transform the labels.
 encoded_labels = label_encoder.fit_transform(labels)  # 0 -- Hip Hop | 1 -- Rock
@@ -62,7 +63,7 @@ xgb_model = xgb.XGBClassifier(**xgb_params, booster="gbtree", eval_metric=['logl
 xgb_model.fit(scaled_train_features, train_labels)
 
 
-
+# Define the function to perform the prediction.
 def predict_class_proba(user_input):
     "A function that predict the probabilities of each classes(positive(Rock) and negative(Hip Hop)) based on the collected input features."
 
