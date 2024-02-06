@@ -13,10 +13,10 @@ from sklearn.preprocessing import LabelEncoder
 echo_tracks = pd.read_csv("genre_dataset.csv")
 
 # Create features(predictor) variables.
-features = echo_tracks.drop(["Unnamed: 0", "genre_top", "track_id"], axis=1)
+features = echo_tracks.drop(["Unnamed: 0", "genre", "track_id"], axis=1)
 
 # Create labels(outcome).
-labels = echo_tracks.genre_top
+labels = echo_tracks.genre
 
 #Initialize LabelEncoder.
 label_encoder = LabelEncoder()

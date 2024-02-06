@@ -47,33 +47,47 @@ if app_mode == 'Home':
     datasets = pd.read_csv("genre_dataset.csv")
     datasets = datasets.drop("Unnamed: 0", axis=1)
     st.write(datasets.head())
-    # st.write("Developed by: Osunba Silas")
     
     # HTML code with styling
     html_code = f"""
-    <div style="padding: 10px; background-color: #382755; margin-bottom: 10px;">
+    <div style="padding: 10px; background-color: #382755; margin-bottom: 0px;">
         <h3 style="color: white;">About the App</h3>
-        <p style="color: white;">The Genre Prediction App is an application that uses machine learning algorithm and music analysis techniques to predict
-        the genre of a given song. It analyzes various features of a song, such as tempo, instrumentation and vocal characteristics, and then applies a
-        trained model to classify the song into Hip Hop and Rock genres. This is a binary classfication tasks, where the model is being asked to being trained
-        to predict two different classes. The algorithm used was the eXtreme Gradeint Boosting(XGBoost) algorithm.</p>
+        <p style="color: white;">The Genre Prediction App is an application that utilizes machine learning algorithms and music analysis techniques 
+        to predict the genre of a given song. It analyzes various features of a song, such as tempo, instrumentation, and vocal characteristics. 
+        It applies a trained model to classify the song into either Hip Hop or Rock genres. This involves a binary classification task, 
+        where the model is trained to predict two different classes. The algorithm employed for this task is the eXtreme Gradient Boosting (XGBoost)
+        algorithm.</p>
         
-        Developed by Osunba Silas
-    </div>
-    
-    <div style="background-color:white; padding: 100px; margin:0px;">
-    
         
     </div>
+    
     """
-    twitter_username = ""
-    twitter_img_src = ""
-
+    
     # Display the HTML content using st.markdown
     st.markdown(html_code, unsafe_allow_html=True)
     
+    st.markdown("---")
+    
+    st.markdown("<div style='text-align: center; border: 2px solid black; padding: 10px; border-radius: 30px;'> Developed by Osunba Silas 🚀</div>", unsafe_allow_html=True)
+   
+    # Add section for social media links
+    st.markdown("<div style='text-align: center; margin-top: 20px;'>Connect with me📩</div>", unsafe_allow_html=True)
  
-
+    
+    # Add links to your Twitter, LinkedIn, and GitHub accounts along with an image link
+    st.markdown("<div style='text-align: center;'>\
+        <a href='https://x.com/thaguymaxx' target='_blank'>\
+            <img src='https://tse2.mm.bing.net/th?id=OIP.GvhQyyfMGA49XVPJ_uvG0gHaEK&pid=Api&P=0&h=180' alt='Twitter' style='width: 30px; height: 30px;'>\
+                </a> •  \
+        <a href='https://www.linkedin.com/in/osunbasilas/' target='_blank'>\
+            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png' alt='LinkedIn' style='width: 30px; height: 30px;'>\
+                </a> •  \
+        <a href='https://github.com/TolaniSilas' target='_blank'>\
+            <img src='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' alt='GitHub' style='width: 30px; height: 30px;'>\
+                </a>\
+                    </div>", unsafe_allow_html=True)
+    
+    
 
     
 # Display if app_mode is "Prediction".   
@@ -92,7 +106,7 @@ elif app_mode == "Prediction":
     valence = st.number_input("Valence", min_value=0.0, max_value=1.0)
     
     
-    
+    # Generate Predictions if a user click on button.
     if st.button("Predict the song genre", key="my_button"):
         # Prepare the user input as an array.
         user_inputs = [float(acousticness), float(danceability), float(energy), float(instrumentalness), \
@@ -111,11 +125,14 @@ elif app_mode == "Prediction":
         st.success(f"The song genre is {prediction}")
         
    
+   
+   
     
 # Display if app_mode is "Deep Dive"      
 elif app_mode == "Deep Dive into Music Analysis":
     st.header("Deep Dive into Music Analysis")
     st.markdown("In this section, we'll explore the fascinating word of music analysis and its impact on understanding different genres.")
+    st.markdown("---")
     
     acousticness = """Acousticness: The acousticness of a music refers to the degree of acoustic elements in a song. It measures how much the 
     sound of the music is derived from acoustic instruments or natural sounds, as opposed to electronic or synthesized sounds. The value of 
@@ -169,23 +186,13 @@ elif app_mode == "Deep Dive into Music Analysis":
     The values in between represent varying degrees of emotional positivity or negativity in the music. So, the closer the value is to 1.0, the more
     positive and uplifting the song is considered to be."""
     st.write(valence)
+    
+    
+    st.write("""""")
+    st.write("""The integration of machine learning algorithms into music analysis has transformed the field, enabling analysts to uncover new dimensions
+        of understanding for the complex and intricate nuances of music.""")
  
-    
-    # github, linkedIn and twitter link.
-    twitter_link = "https://twitter.com/thaguymaxx"
-    github_link = "https://github.com/TolaniSilas"
-    linkedIn_link = "https://www.linkedin.com/in/"
-    
-    # define the colors.
-    twitter_color = "#1DA1F2"
-    github_color = "#181717"
-    linkedIn_color = "#181717"
-    
-    # Display links with colored markdown.
-    st.markdown(f"[Follow me on Twitter]({twitter_link}", unsafe_allow_html=True)
-    st.markdown(f"<span style='color: {github_color}''>[Follow me on Twitter]({github_link})</sty>", unsafe_allow_html=True)
-    st.markdown(f"<span style='color: {linkedIn_color}''>[Let's connect on LinkedIn]({linkedIn_link})</span>", unsafe_allow_html=True)
-    
+   
     
     
     
