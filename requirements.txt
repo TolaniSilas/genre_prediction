@@ -5,4 +5,4 @@ requests
 joblib
 xgboost
 scikit-learn
-matplotlib.pyplot as plt 
+matplotlib

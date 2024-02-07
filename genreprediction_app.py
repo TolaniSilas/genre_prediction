@@ -4,7 +4,6 @@ import pandas as pd
 import numpy as np
 import requests
 import joblib
-# import xgboost as xgb
 from sklearn.preprocessing import StandardScaler
 from genre_model import predict_class_proba
 
@@ -13,7 +12,7 @@ from genre_model import predict_class_proba
 # Set the theme configuration.
 st.set_page_config(
     page_title="Genre Prediction App",
-    page_icon=":musical_note",
+    page_icon=":musical_note",   
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -171,14 +170,6 @@ elif app_mode == "Deep Dive into Music Analysis":
     st.write("""The integration of machine learning algorithms into music analysis has transformed the field, enabling analysts to uncover new dimensions
         of understanding for the complex and intricate nuances of music.""")
  
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
+ 
+   # -----------------------------------END OF CODE--------------------------------------------#
